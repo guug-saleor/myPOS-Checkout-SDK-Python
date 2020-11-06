@@ -11,8 +11,10 @@ class Helper():
     def __init__(self):
         pass
 
-    def escape(self, text):
-        return str(self.unescape(text)).translate(_escapes)
+    @classmethod
+    def escape(cls, text):
+        return str(cls.unescape(text)).translate(cls._escapes)
 
-    def unescape(self, text):
+    @classmethod
+    def unescape(cls, text):
         return text.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>').replace('&quot;', '"').replace('&#39;', "'")

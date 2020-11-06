@@ -59,3 +59,38 @@ class Response():
 
     def __getSignedData(self):
         return base64.b64encode("-".join(str(x) for x in self.__data.values()))
+
+    @classmethod
+    def getInstance(cls, cnf:Config, raw_data, format):
+        return cls(cnf, raw_data, format)
+
+    def isSignatureCorrect(self):
+        try:
+            self.__verifySignature()
+        except:
+            return False
+
+        return True
+
+    def getSignature(self):
+        return self.__signature
+
+    def getStatus(self):
+        return self.getData('CASE_LOWER').get('status')
+
+    def getData(self, case=None):
+        if case==None:
+            return self.__data
+
+        if case!='CASE_LOWER':
+            return dict((k.lower(), v) for k, v in self.__data.items())
+        elif case=='CASE_UPPER':
+            return dict((k.upper(), v) for k, v in self.__data.items())
+        else:
+            raise IPC_Exception('Invalid Key Case!')
+
+    def getStatusMsg(self):
+        return self.getData('CASE_LOWER').get('statusmsg')
+
+    def getDataRaw(self):
+        return self.__raw_data

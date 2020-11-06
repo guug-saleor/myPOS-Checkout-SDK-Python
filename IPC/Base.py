@@ -14,7 +14,8 @@ class Base(ABC):
     __cnf : Config
     __params = {}
 
-    def isValidSignature(self, data, signature, pubKey):
+    @staticmethod
+    def isValidSignature(data, signature, pubKey):
         return Crypto.verify(data, signature, pubKey)
 
     def getOutputFormat(self):
