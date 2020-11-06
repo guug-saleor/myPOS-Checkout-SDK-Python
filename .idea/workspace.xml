@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83ccdfe5-9cdc-4bde-a371-2448d30dc9f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/myPos-python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/myPos-python.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Base.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Config.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Response.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Response.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IPC/Authorization.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Authorization.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
