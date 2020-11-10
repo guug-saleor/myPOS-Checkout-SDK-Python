@@ -8,9 +8,7 @@ from IPC.IPC_Exception import IPC_Exception
  * Process IPC method: IPCIAStoreCard.
  * Collect, validate and send API params
 """
-class IAStoreCard(CardStore):
-    CARD_VERIFICATION_NO = 1
-    CARD_VERIFICATION_YES = 2
+class IAStoredCardUpdate(CardStore):
     """
     * @var Card
     """
@@ -32,7 +30,7 @@ class IAStoreCard(CardStore):
     def process(self):
         self.validate()
 
-        self._addPostParam('IPCmethod', 'IPCIAStoreCard')
+        self._addPostParam('IPCmethod', 'IPCIAStoredCardUpdate')
         self._addPostParam('IPCVersion', self.getCnf().getVersion())
         self._addPostParam('IPCLanguage', self.getCnf().getLang())
         self._addPostParam('SID', self.getCnf().getSid())
@@ -46,7 +44,7 @@ class IAStoreCard(CardStore):
             self._addPostParam('Currency', self.getCurrency())
 
         self._addPostParam('CardType', self.getCard().getCardType())
-        self._addPostParam('PAN', self.getCard().getCardNumber(), True)
+        self._addPostParam('CardToken', self.getCard().getCardToken())
         self._addPostParam('CardholderName', self.getCard().getCardHolder())
         self._addPostParam('ExpDate', self.getCard().getExpDate(), True)
         self._addPostParam('CVC', self.getCard().getCvc(), True)
@@ -66,6 +64,7 @@ class IAStoreCard(CardStore):
     """
     def validate(self):
         super().validate()
+
         try:
             self.getCnf().validate()
         except Exception as ex:

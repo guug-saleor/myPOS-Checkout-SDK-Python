@@ -5,10 +5,10 @@ from IPC.IPC_Exception import IPC_Exception
 
 
 """
-*  Process IPC method: IPCAuthorizationCapture.
-*  Collect, validate and send API params
+ * Process IPC method: IPCAuthorizationReverse.
+ * Collect, validate and send API params
 """
-class AuthorizationCapture(Base):
+class AuthorizationReverse(Base):
     __currency = 'EUR'
     __orderID: str
     __amount: float
@@ -26,7 +26,7 @@ class AuthorizationCapture(Base):
     *
     * @param string orderID
     *
-    * @return AuthorizationCapture
+    * @return AuthorizationReverse
     """
     def setOrderID(self, orderID: str):
         self.__orderID = orderID
@@ -38,7 +38,7 @@ class AuthorizationCapture(Base):
     *
     * @param string currency
     *
-    * @return AuthorizationCapture
+    * @return AuthorizationReverse
     """
     def setCurrency(self, currency: str):
         self.__currency = currency
@@ -50,7 +50,7 @@ class AuthorizationCapture(Base):
     * 
     * @param mixed amount
     *
-    * @return AuthorizationCapture
+    * @return AuthorizationReverse
     """
     def setAmount(self, amount: float):
         self.__amount = amount
@@ -66,7 +66,7 @@ class AuthorizationCapture(Base):
     def process(self):
         self.validate()
 
-        self._addPostParam('IPCmethod', 'IPCAuthorizationCapture')
+        self._addPostParam('IPCmethod', 'IPCAuthorizationReverse')
         self._addPostParam('IPCVersion', self.getCnf().getVersion())
         self._addPostParam('IPCLanguage', self.getCnf().getLang())
         self._addPostParam('SID', self.getCnf().getSid())
@@ -96,7 +96,7 @@ class AuthorizationCapture(Base):
             raise IPC_Exception(f'Invalid Config details: {ex}')
 
         if not Helper.versionCheck(self.getCnf().getVersion(), '1.4'):
-            raise IPC_Exception('IPCVersion ' + self.getCnf().getVersion() + ' does not support IPCAuthorizationCapture method. Please use 1.4 or above.')
+            raise IPC_Exception('IPCVersion ' + self.getCnf().getVersion() + ' does not support IPCAuthorizationReverse method. Please use 1.4 or above.')
 
         if self.getCurrency() == None:
             raise IPC_Exception('Invalid __currency')
