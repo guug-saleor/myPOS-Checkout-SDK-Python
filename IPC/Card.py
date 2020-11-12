@@ -22,101 +22,101 @@ class Card(object):
     __xid: str
     __cardToken: str
 
-    """
-    *  @return int
-    """
     def getCardType(self):
+        """
+    *  @return int
+        """
         return self.__cardType
 
-    """
-    * @param int cardType
-    """
     def setCardType(self, cardType: int):
+        """
+    * @param int cardType
+        """
         self.__cardType = cardType
 
-    """
-    * @param string cardNumber
-    """
     def setCardNumber(self, cardNumber: str):
+        """
+    * @param string cardNumber
+        """
         self.__cardNumber = cardNumber
 
-    """
-    * @return string
-    """
     def getCardHolder(self):
+        """
+    * @return string
+        """
         return self.__cardHolder
 
-    """
-    * @param string cardHolder
-    """
     def setCardHolder(self, cardHolder: str):
+        """
+    * @param string cardHolder
+        """
         self.__cardHolder = cardHolder
 
-    """
-    * @param string expMM
-    """
     def setExpMM(self, expMM: str):
+        """
+    * @param string expMM
+        """
         self.__expMM = expMM
 
-    """
-    * @param string expYY
-    """
     def setExpYY(self, expYY: str):
+        """
+    * @param string expYY
+        """
         self.__expYY = expYY
 
-    """
-    * @param string cvc 
-    """
     def setCvc(self, cvc ):
+        """
+    * @param string cvc 
+        """
         self.__cvc  = cvc 
 
-    """
-    * @return string
-    """
     def getEci(self):
+        """
+    * @return string
+        """
         return self.__eci
 
-    """
-    * @param string eci
-    """
     def setEci(self, eci: str):
+        """
+    * @param string eci
+        """
         self.__eci = eci
 
-    """
-    * @return string
-    """
     def getAvv(self):
+        """
+    * @return string
+        """
         return self.__avv
 
-    """
-    * @param string avv
-    """
     def setAvv(self, avv: str):
+        """
+    * @param string avv
+        """
         self.__avv = avv
 
-    """
-    * @return string
-    """
     def getXid(self):
+        """
+    * @return string
+        """
         return self.__xid
 
-    """
-    * @param string xid
-    """
     def setXid(self, xid: str):
+        """
+    * @param string xid
+        """
         self.__xid = xid
 
-    """
-    * @param string cardToken
-    """
     def setCardToken(self, cardToken: str):
+        """
+    * @param string cardToken
+        """
         self.__cardToken = cardToken
 
-    """
+    def validate(self):
+        """
     * @return bool
     * @raises IPC_Exception
-    """
-    def validate(self):
+        """
         if self.getCardToken():
             return True
 
@@ -134,40 +134,39 @@ class Card(object):
 
         return False
 
-    """
-    * @return string
-    """
     def getCardToken(self):
+        """
+    * @return string
+        """
         return self.__cardToken
 
-    """
-    * @return string
-    """
     def getCardNumber(self):
+        """
+    * @return string
+        """
         return self.__cardNumber
 
-    """
-    * @return string
-    """
     def getCvc(self):
+        """
+    * @return string
+        """
         return self.__cvc 
 
-    """
-    * @return string
-    """
     def getExpMM(self):
+        """
+    * @return string
+        """
         return self.__expMM
 
-    """
-    * @return string
-    """
     def getExpYY(self):
+        """
+    * @return string
+        """
         return self.__expYY
 
-    """
-    * Date in format YYMM
-    *
-    * @return string
-    """
     def getExpDate(self):
+        """
+    * Date in format YYMM\n
+    * @return string
+        """
         return self.getExpYY().ljust(2) + self.getExpMM().ljust(2)

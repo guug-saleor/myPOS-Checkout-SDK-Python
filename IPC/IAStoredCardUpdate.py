@@ -4,39 +4,35 @@ from IPC.Config import Config
 from IPC.IPC_Exception import IPC_Exception
 
 
-"""
- * Process IPC method: IPCIAStoreCard.
- * Collect, validate and send API params
-"""
 class IAStoredCardUpdate(CardStore):
     """
-    * @var Card
+ * Process IPC method: IPCIAStoreCard.
+ * Collect, validate and send API params
     """
+
     __card: Card
 
-    """
-    * Return purchase object
-    *
-    * @param cnf: Config
-    """
     def __init__(self, cnf: Config):
+        """
+    * Return purchase object\n
+    * @param cnf: Config
+        """
         self._setCnf(cnf)
 
-    """
-    * Initiate API request
-    *
-    * @return Response
-    """
     def process(self):
+        """
+    * Initiate API request\n
+    * @return Response
+        """
         self.validate()
 
         self._addPostParam('IPCmethod', 'IPCIAStoredCardUpdate')
-        self._addPostParam('IPCVersion', self.getCnf().getVersion())
-        self._addPostParam('IPCLanguage', self.getCnf().getLang())
-        self._addPostParam('SID', self.getCnf().getSid())
-        self._addPostParam('WalletNumber', self.getCnf().getWallet())
-        self._addPostParam('KeyIndex', self.getCnf().getKeyIndex())
-        self._addPostParam('Source', self.getCnf().getSource())
+        self._addPostParam('IPCVersion', self._getCnf().getVersion())
+        self._addPostParam('IPCLanguage', self._getCnf().getLang())
+        self._addPostParam('SID', self._getCnf().getSid())
+        self._addPostParam('WalletNumber', self._getCnf().getWallet())
+        self._addPostParam('KeyIndex', self._getCnf().getKeyIndex())
+        self._addPostParam('Source', self._getCnf().getSource())
 
         self._addPostParam('CardVerification', self.getCardVerification())
         if (self.getCardVerification()) == self.CARD_VERIFICATION_YES:
@@ -56,17 +52,16 @@ class IAStoredCardUpdate(CardStore):
 
         return self._processPost()
 
-    """
-    * Validate all set purchase details
-    *
+    def validate(self):
+        """
+    * Validate all set purchase details\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def validate(self):
+        """
         super().validate()
 
         try:
-            self.getCnf().validate()
+            self._getCnf().validate()
         except Exception as ex:
             raise IPC_Exception(f'Invalid Config details: {ex}')
 
@@ -80,18 +75,16 @@ class IAStoredCardUpdate(CardStore):
 
         return True
 
-    """
-    * Card object
-    *
-    * @return Card
-    """
     def getCard(self):
+        """
+    * Card object\n
+    * @return Card
+        """
         return self.__card
 
-    """
-    * Card object
-    *
-    * @param Card card
-    """
     def setCard(self, card: Card):
+        """
+    * Card object\n
+    * @param Card card
+        """
         self.__card = card

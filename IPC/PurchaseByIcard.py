@@ -5,14 +5,12 @@ from IPC.Helper import Helper
 from IPC.IPC_Exception import IPC_Exception
 
 
-"""
- * Process IPC method: IPCPurchaseByIcard.
- * Collect, validate and send API params
-"""
 class PurchaseByIcard(Base):
     """
-    * @var Cart
+ * Process IPC method: IPCPurchaseByIcard.
+ * Collect, validate and send API params
     """
+
     __cart: Cart
 
     __url_ok: str
@@ -23,107 +21,93 @@ class PurchaseByIcard(Base):
     __currency = 'EUR'
     __orderID: str
 
-    """
-    * Return purchase object
-    *
-    * @param cnf: Config
-    """
     def __init__(self, cnf: Config):
+        """
+    * Return purchase object\n
+    * @param cnf: Config
+        """
         self._setCnf(cnf)
 
-    """
-    * Purchase identifier - must be unique
-    *
-    * @param string orderID
-    *
-    * @return PurchaseByIcard
-    """
     def setOrderID(self, orderID: str):
+        """
+    * Purchase identifier - must be unique\n
+    * @param string orderID\n
+    * @return PurchaseByIcard
+        """
         self.__orderID = orderID
 
         return self
 
-    """
-    * Customer Phone number
-    *
-    * @return string
-    """
     def getPhone(self):
+        """
+    * Customer Phone number\n
+    * @return string
+        """
         return self.__phone
 
-    """
-    * Customer Phone number
-    *
-    * @param string phone
-    *
-    * @return PurchaseByIcard
-    """
     def setPhone(self, phone: str):
+        """
+    * Customer Phone number\n
+    * @param string phone\n
+    * @return PurchaseByIcard
+        """
         self.__phone = phone
 
         return self
 
-    """
-    * Customer Email address
-    *
-    * @return string
-    """
     def getEmail(self):
+        """
+    * Customer Email address\n
+    * @return string
+        """
         return self.__email
 
-    """
-    * Customer Email address
-    *
-    * @param string email
-    *
-    * @return PurchaseByIcard
-    """
     def setEmail(self, email: str):
+        """
+    * Customer Email address\n
+    * @param string email\n
+    * @return PurchaseByIcard
+        """
         self.__email = email
 
         return self
 
-    """
-    * Merchant Site URL where client comes after unsuccessful payment
-    *
-    * @param string urlCancel
-    *
-    * @return PurchaseByIcard
-    """
     def setUrlCancel(self, urlCancel: str):
+        """
+    * Merchant Site URL where client comes after unsuccessful payment\n
+    * @param string urlCancel\n
+    * @return PurchaseByIcard
+        """
         self.__url_cancel = urlCancel
 
         return self
 
-    """
-    * Merchant Site URL where IPC posts Purchase Notify requests
-    *
-    * @param string urlNotify
-    *
-    * @return PurchaseByIcard
-    """
     def setUrlNotify(self, urlNotify: str):
+        """
+    * Merchant Site URL where IPC posts Purchase Notify requests\n
+    * @param string urlNotify\n
+    * @return PurchaseByIcard
+        """
         self.__url_notify = urlNotify
 
         return self
 
 
-    """
-    * Initiate API request
-    *
+    def process(self):
+        """
+    * Initiate API request\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def process(self):
+        """
         self.validate()
 
         self._addPostParam('IPCmethod', 'IPCPurchaseByIcard')
-        self._addPostParam('IPCVersion', self.getCnf().getVersion())
-        self._addPostParam('IPCLanguage', self.getCnf().getLang())
-        self._addPostParam('SID', self.getCnf().getSid())
-        self._addPostParam('WalletNumber', self.getCnf().getWallet())
-        self._addPostParam('KeyIndex', self.getCnf().getKeyIndex())
-        self._addPostParam('Source', self.getCnf().getSource())
+        self._addPostParam('IPCVersion', self._getCnf().getVersion())
+        self._addPostParam('IPCLanguage', self._getCnf().getLang())
+        self._addPostParam('SID', self._getCnf().getSid())
+        self._addPostParam('WalletNumber', self._getCnf().getWallet())
+        self._addPostParam('KeyIndex', self._getCnf().getKeyIndex())
+        self._addPostParam('Source', self._getCnf().getSource())
 
         self._addPostParam('Currency', self.getCurrency())
         self._addPostParam('Amount', self.__cart.getTotal())
@@ -150,14 +134,12 @@ class PurchaseByIcard(Base):
 
         return True
 
-    """
-    * Validate all set purchase details
-    *
+    def validate(self):
+        """
+    * Validate all set purchase details\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def validate(self):
-
+        """
         if self.getUrlCancel() == None or not Helper.isValidURL(self.getUrlCancel()):
             raise IPC_Exception('Invalid Cancel URL')
 
@@ -177,7 +159,7 @@ class PurchaseByIcard(Base):
             raise IPC_Exception('Invalid Email')
 
         try:
-            self.getCnf().validate()
+            self._getCnf().validate()
         except Exception as ex:
             raise IPC_Exception(f'Invalid Config details: {ex}')
 
@@ -191,86 +173,74 @@ class PurchaseByIcard(Base):
 
         return True
 
-    """
-    * Merchant Site URL where client comes after unsuccessful payment
-    *
-    * @return string
-    """
     def getUrlCancel(self):
+        """
+    * Merchant Site URL where client comes after unsuccessful payment\n
+    * @return string
+        """
         return self.__url_cancel
 
-    """
-    * Merchant Site URL where IPC posts Purchase Notify requests
-    *
-    * @var string
-    """
     def getUrlNotify(self):
+        """
+    * Merchant Site URL where IPC posts Purchase Notify requests\n
+    * @var string
+        """
         return self.__url_notify
 
-    """
-    * Merchant Site URL where client comes after successful payment
-    *
-    * @return string
-    """
     def getUrlOk(self):
+        """
+    * Merchant Site URL where client comes after successful payment\n
+    * @return string
+        """
         return self.__url_ok
 
-    """
-    * Merchant Site URL where client comes after successful payment
-    *
-    * @param string urlOk
-    *
-    * @return PurchaseByIcard
-    """
     def setUrlOk(self, urlOk: str):
+        """
+    * Merchant Site URL where client comes after successful payment\n
+    * @param string urlOk\n
+    * @return PurchaseByIcard
+        """
         self.__url_ok = urlOk
 
         return self
 
-    """
-    * ISO-4217 Three letter __currency code
-    *
-    * @return string
-    """
     def getCurrency(self):
+        """
+    * ISO-4217 Three letter __currency code\n
+    * @return string
+        """
         return self.__currency
 
-    """
-    * ISO-4217 Three letter __currency code
-    *
-    * @param string currency
-    *
-    * @return PurchaseByIcard
-    """
     def setCurrency(self, currency: str):
+        """
+    * ISO-4217 Three letter __currency code\n
+    * @param string currency\n
+    * @return PurchaseByIcard
+        """
         self.__currency = currency
 
         return self
 
-    """
-    * Cart object
-    *
-    * @return Cart
-    """
     def getCart(self):
+        """
+    * Cart object\n
+    * @return Cart
+        """
         return self.__cart
 
-    """
-    * Cart object
-    *
-    * @param cart: Cart
-    *
-    * @return PurchaseByIcard
-    """
     def setCart(self, cart: Cart):
+        """
+    * Cart object\n
+    * @param cart: Cart\n
+    * @return PurchaseByIcard
+        """
         self.__cart = cart
 
         return self
 
-    """
-    * Purchase identifier
-    *
-    * @return string
-    """
     def getOrderID(self):
+        """
+    * Purchase identifier\n
+    * @return string
+        """
         return self.__orderID

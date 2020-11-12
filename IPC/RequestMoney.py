@@ -4,11 +4,11 @@ from IPC.Helper import Helper
 from IPC.IPC_Exception import IPC_Exception
 
 
-"""
+class RequestMoney(Base):
+    """
  * Process IPC method: IPCRequestMoney.
  * Collect, validate and send API params
-"""
-class RequestMoney(Base):
+    """
     __currency = 'EUR'
     __mandateReference: str
     __customerWalletNumber: str
@@ -16,82 +16,73 @@ class RequestMoney(Base):
     __reason: str
     __orderID: str
 
-    """
-    * Return Refund object
-    *
-    * @param cnf: Config
-    """
     def __init__(self, cnf: Config):
+        """
+    * Return Refund object\n
+    * @param cnf: Config
+        """
         self._setCnf(cnf)
 
-    """
-    * Refund amount
-    *
-    * @param float amount
-    """
     def setAmount(self, amount: float):
+        """
+    * Refund amount\n
+    * @param float amount
+        """
         self.__amount = amount
 
-    """
-    * Request identifier - must be unique
-    *
-    * @param string orderID
-    *
-    * @return RequestMoney
-    """
     def setOrderID(self, orderID: str):
+        """
+    * Request identifier - must be unique\n
+    * @param string orderID\n
+    * @return RequestMoney
+        """
         self.__orderID = orderID
 
         return self
 
-    """
-    * Unique identifier of the agreement (mandate) between the merchant and the client (debtor). Up to 127 characters.
-    *
-    * @param string mandateReference
-    """
     def setMandateReference(self, mandateReference: str):
+        """
+    * Unique identifier of the agreement (mandate) between the merchant and the client (debtor). Up to 127 characters.\n
+    * @param string mandateReference
+        """
         self.__mandateReference = mandateReference
 
-    """
-    * Identifier of the client’s (debtor’s) myPOS account
-    *
-    * @param string customerWalletNumber
-    """
     def setCustomerWalletNumber(self, customerWalletNumber: str):
+        """
+    * Identifier of the client’s (debtor’s) myPOS account\n
+    * @param string customerWalletNumber
+        """
         self.__customerWalletNumber = customerWalletNumber
 
-    """
-    * Reversal of the previously executed Request money transaction.
-    *
-    * @param bool reversalIndicator
-    """
     def setReversalIndicator(self, reversalIndicator: bool):
+        """
+    * Reversal of the previously executed Request money transaction.\n
+    * @param bool reversalIndicator
+        """
         self.__reversalIndicator = reversalIndicator
 
-    """
-    * The reason for the transfer.
-    *
-    * @param string reason
-    """
     def setReason(self, reason: str):
+        """
+    * The reason for the transfer.\n
+    * @param string reason
+        """
         self.__reason = reason
 
-    """
-    * Initiate API request
-    *
+    def process(self):
+        """
+    * Initiate API request\n
     * @return Response
     * @raises IPC_Exception
-    """
-    def process(self):
+        """
         self.validate()
 
         self._addPostParam('IPCmethod', 'IPCRequestMoney')
-        self._addPostParam('IPCVersion', self.getCnf().getVersion())
-        self._addPostParam('IPCLanguage', self.getCnf().getLang())
-        self._addPostParam('SID', self.getCnf().getSid())
-        self._addPostParam('WalletNumber', self.getCnf().getWallet())
-        self._addPostParam('KeyIndex', self.getCnf().getKeyIndex())
-        self._addPostParam('Source', self.getCnf().getSource())
+        self._addPostParam('IPCVersion', self._getCnf().getVersion())
+        self._addPostParam('IPCLanguage', self._getCnf().getLang())
+        self._addPostParam('SID', self._getCnf().getSid())
+        self._addPostParam('WalletNumber', self._getCnf().getWallet())
+        self._addPostParam('KeyIndex', self._getCnf().getKeyIndex())
+        self._addPostParam('Source', self._getCnf().getSource())
 
         self._addPostParam('Currency', self.getCurrency())
         self._addPostParam('Amount', self.getAmount())
@@ -106,15 +97,14 @@ class RequestMoney(Base):
 
         return self._processPost()
 
-    """
-    * Validate all set refund details
-    *
+    def validate(self):
+        """
+    * Validate all set refund details\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def validate(self):
+        """
         try:
-            self.getCnf().validate()
+            self._getCnf().validate()
         except Exception as ex:
             raise IPC_Exception(f'Invalid Config details: {ex}')
 
@@ -132,70 +122,61 @@ class RequestMoney(Base):
 
         return True
 
-    """
-    * Refund amount
-    *
-    * @return float
-    """
     def getAmount(self):
+        """
+    * Refund amount\n
+    * @return float
+        """
         return self.__amount
 
-    """
-    * ISO-4217 Three letter __currency code
-    *
-    * @return string
-    """
     def getCurrency(self):
+        """
+    * ISO-4217 Three letter __currency code\n
+    * @return string
+        """
         return self.__currency
 
-    """
-    * ISO-4217 Three letter __currency code
-    *
-    * @param string currency
-    *
-    * @return RequestMoney
-    """
     def setCurrency(self, currency: str):
+        """
+    * ISO-4217 Three letter __currency code\n
+    * @param string currency\n
+    * @return RequestMoney
+        """
         self.__currency = currency
 
         return self
 
-    """
-    * Request identifier - must be unique
-    *
-    * @return string
-    """
     def getOrderID(self):
+        """
+    * Request identifier - must be unique\n
+    * @return string
+        """
         return self.__orderID
 
-    """
-    * Unique identifier of the agreement (mandate) between the merchant and the client (debtor). Up to 127 characters.
-    *
-    * @return string
-    """
     def getMandateReference(self):
+        """
+    * Unique identifier of the agreement (mandate) between the merchant and the client (debtor). Up to 127 characters.\n
+    * @return string
+        """
         return self.__mandateReference
 
-    """
-    * Identifier of the client’s (debtor’s) myPOS account
-    *
-    * @return string
-    """
     def getCustomerWalletNumber(self):
+        """
+    * Identifier of the client’s (debtor’s) myPOS account\n
+    * @return string
+        """
         return self.__customerWalletNumber
 
-    """
-    * Reversal of the previously executed Request money transaction.
-    *
-    * @return bool
-    """
     def getReversalIndicator(self):
+        """
+    * Reversal of the previously executed Request money transaction.\n
+    * @return bool
+        """
         return self.__reversalIndicator
 
-    """
-    * The reason for the transfer.
-    *
-    * @return string
-    """
     def getReason(self):
+        """
+    * The reason for the transfer.\n
+    * @return string
+        """
         return self.__reason

@@ -25,25 +25,23 @@ def decrypt(ciphertext, priv_key):
     cipher = PKCS1_OAEP.new(priv_key)
     return cipher.decrypt(ciphertext)
 
-def sign(message, priv_key, hashAlg="SHA-256"):
-    global hash
-    hash = hashAlg
+def sign(message, priv_key, hash="SHA256"):
     signer = PKCS1_v1_5.new(priv_key)
 
-    if (hash == "SHA-512"):
+    if (hash == "SHA512"):
         digest = SHA512.new()
-    elif (hash == "SHA-384"):
+    elif (hash == "SHA384"):
         digest = SHA384.new()
-    elif (hash == "SHA-256"):
+    elif (hash == "SHA256"):
         digest = SHA256.new()
-    elif (hash == "SHA-1"):
+    elif (hash == "SHA1"):
         digest = SHA.new()
     else:
         digest = MD5.new()
     digest.update(message)
     return signer.sign(digest)
 
-def verify(message, signature, pub_key):
+def verify(message, signature, pub_key, hash="SHA256"):
     signer = PKCS1_v1_5.new(pub_key)
     if (hash == "SHA512"):
         digest = SHA512.new()

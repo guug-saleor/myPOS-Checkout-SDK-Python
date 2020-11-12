@@ -9,39 +9,35 @@ class CardStore(Base, metaclass=abc.ABCMeta):
     __cardVerification: int
     __amount: float
 
-    """
-    * Amount of the transaction
-    * Used in the request if CardVerification = CARD_VERIFICATION_YES.
-    *
-    * @return float
-    """
     def getAmount(self):
+        """
+    * Amount of the transaction
+    * Used in the request if CardVerification = CARD_VERIFICATION_YES.\n
+    * @return float
+        """
         return self.__amount
 
-    """
-    * Amount of the transaction.
-    * Used in the request if CardVerification = CARD_VERIFICATION_YES.
-    *
-    * @param float amount
-    """
     def setAmount(self, amount: float):
+        """
+    * Amount of the transaction.
+    * Used in the request if CardVerification = CARD_VERIFICATION_YES.\n
+    * @param float amount
+        """
         self.__amount = amount
 
-    """
-    * Specify whether the inputted card data to be verified or not before storing
-    *
-    * @param int cardVerification
-    """
     def setCardVerification(self, cardVerification: int):
+        """
+    * Specify whether the inputted card data to be verified or not before storing\n
+    * @param int cardVerification
+        """
         self.__cardVerification = cardVerification
 
-    """
-    * Validate all set purchase details
-    *
+    def validate(self):
+        """
+    * Validate all set purchase details\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def validate(self):
+        """
         if (self.getCardVerification() == None or (not self.getCardVerification() in [
                 self.CARD_VERIFICATION_NO,
                 self.CARD_VERIFICATION_YES,
@@ -53,32 +49,28 @@ class CardStore(Base, metaclass=abc.ABCMeta):
 
         return True
 
-    """
-    * Specify whether the inputted card data to be verified or not before storing
-    *
-    * @return int
-    """
     def getCardVerification(self):
+        """
+    * Specify whether the inputted card data to be verified or not before storing\n
+    * @return int
+        """
         return self.__cardVerification
 
-    """
-    * ISO-4217 Three letter __currency code
-    * Used in the request if CardVerification = CARD_VERIFICATION_YES.
-    *
-    * @return string
-    """
     def getCurrency(self):
+        """
+    * ISO-4217 Three letter __currency code
+    * Used in the request if CardVerification = CARD_VERIFICATION_YES.\n
+    * @return string
+        """
         return self.__currency
 
-    """
-    * ISO-4217 Three letter __currency code
-    * Used in the request if CardVerification = CARD_VERIFICATION_YES.
-    *
-    * @param string currency
-    *
-    * @return CardStore
-    """
     def setCurrency(self, currency: str):
+        """
+    * ISO-4217 Three letter __currency code
+    * Used in the request if CardVerification = CARD_VERIFICATION_YES.\n
+    * @param string currency\n
+    * @return CardStore
+        """
         self.__currency = currency
 
         return self

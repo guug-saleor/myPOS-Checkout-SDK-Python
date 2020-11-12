@@ -5,72 +5,65 @@ from IPC.Helper import Helper
 from IPC.IPC_Exception import IPC_Exception
 
 
-"""
+class Refund(Base):
+    """
  * Process IPC method: IPCRefund.
  * Collect, validate and send API params
-"""
-class Refund(Base):
+    """
     __currency = 'EUR'
     __orderID: str
     __trnref = None
     __amount: float
 
-    """
-    * Return Refund object
-    *
-    * @param cnf: Config
-    """
     def __init__(self, cnf: Config):
+        """
+    * Return Refund object\n
+    * @param cnf: Config
+        """
         self._setCnf(cnf)
 
-    """
-    * Refund amount
-    *
-    * @param float amount
-    """
     def setAmount(self, amount: float):
+        """
+    * Refund amount\n
+    * @param float amount
+        """
         self.__amount = amount
 
-    """
-    * Transaction reference - transaction unique identifier
-    *
-    * @param string trnref
-    *
-    * @return Refund
-    """
     def setTrnref(self, trnref: str):
+        """
+    * Transaction reference - transaction unique identifier\n
+    * @param string trnref\n
+    * @return Refund
+        """
         self.__trnref = trnref
 
         return self
 
-    """
-    * Request identifier - must be unique
-    *
-    * @param string orderID
-    *
-    * @return Refund
-    """
     def setOrderID(self, orderID: str):
+        """
+    * Request identifier - must be unique\n
+    * @param string orderID\n
+    * @return Refund
+        """
         self.__orderID = orderID
 
         return self
 
-    """
-    * Initiate API request
-    *
+    def process(self):
+        """
+    * Initiate API request\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def process(self):
+        """
         self.validate()
 
         self._addPostParam('IPCmethod', 'IPCRefund')
-        self._addPostParam('IPCVersion', self.getCnf().getVersion())
-        self._addPostParam('IPCLanguage', self.getCnf().getLang())
-        self._addPostParam('SID', self.getCnf().getSid())
-        self._addPostParam('WalletNumber', self.getCnf().getWallet())
-        self._addPostParam('KeyIndex', self.getCnf().getKeyIndex())
-        self._addPostParam('Source', self.getCnf().getSource())
+        self._addPostParam('IPCVersion', self._getCnf().getVersion())
+        self._addPostParam('IPCLanguage', self._getCnf().getLang())
+        self._addPostParam('SID', self._getCnf().getSid())
+        self._addPostParam('WalletNumber', self._getCnf().getWallet())
+        self._addPostParam('KeyIndex', self._getCnf().getKeyIndex())
+        self._addPostParam('Source', self._getCnf().getSource())
 
         self._addPostParam('Currency', self.getCurrency())
         self._addPostParam('Amount', self.getAmount())
@@ -90,15 +83,14 @@ class Refund(Base):
 
         return True
 
-    """
-    * Validate all set refund details
-    *
+    def validate(self):
+        """
+    * Validate all set refund details\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def validate(self):
+        """
         try:
-            self.getCnf().validate()
+            self._getCnf().validate()
         except Exception as ex:
             raise IPC_Exception(f'Invalid Config details: {ex}')
 
@@ -119,46 +111,40 @@ class Refund(Base):
 
         return True
 
-    """
-    * Refund amount
-    *
-    * @return float
-    """
     def getAmount(self):
+        """
+    * Refund amount\n
+    * @return float
+        """
         return self.__amount
 
-    """
-    * ISO-4217 Three letter __currency code
-    *
-    * @return string
-    """
     def getCurrency(self):
+        """
+    * ISO-4217 Three letter __currency code\n
+    * @return string
+        """
         return self.__currency
 
-    """
-    * ISO-4217 Three letter __currency code
-    *
-    * @param string currency
-    *
-    * @return Refund
-    """
     def setCurrency(self, currency: str):
+        """
+    * ISO-4217 Three letter __currency code\n
+    * @param string currency\n
+    * @return Refund
+        """
         self.__currency = currency
 
         return self
 
-    """
-    * Transaction reference - transaction unique identifier
-    *
-    * @return string
-    """
     def getTrnref(self):
+        """
+    * Transaction reference - transaction unique identifier\n
+    * @return string
+        """
         return self.__trnref
 
-    """
-    * Request identifier - must be unique
-    *
-    * @return string
-    """
     def getOrderID(self):
+        """
+    * Request identifier - must be unique\n
+    * @return string
+        """
         return self.__orderID

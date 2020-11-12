@@ -4,11 +4,11 @@ from IPC.Helper import Helper
 from IPC.IPC_Exception import IPC_Exception
 
 
-"""
+class MandateManagement(Base):
+    """
  * Process IPC method: IPCMandateManagement.
  * Collect, validate and send API params
-"""
-class MandateManagement(Base):
+    """
     MANDATE_MANAGEMENT_ACTION_REGISTER = 1
     MANDATE_MANAGEMENT_ACTION_CANCEL = 2
     __mandateReference: str
@@ -16,53 +16,48 @@ class MandateManagement(Base):
     __action: int
     __mandateText: str
 
-    """
-    * Return Refund object
-    *
-    * @param cnf: Config
-    """
     def __init__(self, cnf: Config):
+        """
+    * Return Refund object\n
+    * @param cnf: Config
+        """
         self._setCnf(cnf)
 
-    """
-    * Identifier of the client’s (debtor’s) myPOS account
-    *
-    * @param string customerWalletNumber
-    """
     def setCustomerWalletNumber(self, customerWalletNumber: str):
+        """
+    * Identifier of the client’s (debtor’s) myPOS account\n
+    * @param string customerWalletNumber
+        """
         self.__customerWalletNumber = customerWalletNumber
 
-    """
-    * Registration / Cancellation of a MandateReference
-    *
-    * @param int action
-    """
     def setAction(self, action: int):
+        """
+    * Registration / Cancellation of a MandateReference\n
+    * @param int action
+        """
         self.__action = action
 
-    """
-    * Text supplied from the merchant, so the client can easily identify the Mandate.
-    *
-    * @param string mandateText
-    """
     def setMandateText(self, mandateText: str):
+        """
+    * Text supplied from the merchant, so the client can easily identify the Mandate.\n
+    * @param string mandateText
+        """
         self.__mandateText = mandateText
 
-    """
-    * Initiate API request
-    *
+    def process(self):
+        """
+    * Initiate API request\n
     * @return Response
     * @raises IPC_Exception
-    """
-    def process(self):
+        """
         self.validate()
         self._addPostParam('IPCmethod', 'IPCMandateManagement')
-        self._addPostParam('IPCVersion', self.getCnf().getVersion())
-        self._addPostParam('IPCLanguage', self.getCnf().getLang())
-        self._addPostParam('SID', self.getCnf().getSid())
-        self._addPostParam('WalletNumber', self.getCnf().getWallet())
-        self._addPostParam('KeyIndex', self.getCnf().getKeyIndex())
-        self._addPostParam('Source', self.getCnf().getSource())
+        self._addPostParam('IPCVersion', self._getCnf().getVersion())
+        self._addPostParam('IPCLanguage', self._getCnf().getLang())
+        self._addPostParam('SID', self._getCnf().getSid())
+        self._addPostParam('WalletNumber', self._getCnf().getWallet())
+        self._addPostParam('KeyIndex', self._getCnf().getKeyIndex())
+        self._addPostParam('Source', self._getCnf().getSource())
         self._addPostParam('MandateReference', self.getMandateReference())
         self._addPostParam('CustomerWalletNumber', self.getCustomerWalletNumber())
         self._addPostParam('Action', self.getAction())
@@ -71,15 +66,14 @@ class MandateManagement(Base):
 
         return self._processPost()
 
-    """
-    * Validate all set refund details
-    *
+    def validate(self):
+        """
+    * Validate all set refund details\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def validate(self):
+        """
         try:
-            self.getCnf().validate()
+            self._getCnf().validate()
         except Exception as ex:
             raise IPC_Exception(f'Invalid Config details: {ex}')
 
@@ -88,42 +82,37 @@ class MandateManagement(Base):
 
         return True
 
-    """
-    * Unique identifier of the agreement (mandate) between the merchant and the client (debtor). Up to 127 characters.
-    *
-    * @return string
-    """
     def getMandateReference(self):
+        """
+    * Unique identifier of the agreement (mandate) between the merchant and the client (debtor). Up to 127 characters.\n
+    * @return string
+        """
         return self.__mandateReference
 
-    """
-    * Unique identifier of the agreement (mandate) between the merchant and the client (debtor). Up to 127 characters.
-    *
-    * @param string mandateReference
-    """
     def setMandateReference(self, mandateReference: str):
+        """
+    * Unique identifier of the agreement (mandate) between the merchant and the client (debtor). Up to 127 characters.\n
+    * @param string mandateReference
+        """
         self.__mandateReference = mandateReference
 
-    """
-    * Identifier of the client’s (debtor’s) myPOS account
-    *
-    * @return string
-    """
     def getCustomerWalletNumber(self):
+        """
+    * Identifier of the client’s (debtor’s) myPOS account\n
+    * @return string
+        """
         return self.__customerWalletNumber
 
-    """
-    * Registration / Cancellation of a MandateReference
-    *
-    * @return int
-    """
     def getAction(self):
+        """
+    * Registration / Cancellation of a MandateReference\n
+    * @return int
+        """
         return self.__action
 
-    """
-    * Text supplied from the merchant, so the client can easily identify the Mandate.
-    *
-    * @return string
-    """
     def getMandateText(self):
+        """
+    * Text supplied from the merchant, so the client can easily identify the Mandate.\n
+    * @return string
+        """
         return self.__mandateText

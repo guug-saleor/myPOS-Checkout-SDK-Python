@@ -1,13 +1,14 @@
 
-# /**
-#  * Container for SDK constants
-#  */
-class Defines:
 
+
+class Defines(object):
+    """
+*  Container for SDK constants
+    """
     COMMUNICATION_FORMAT_XML = 'xml'
     COMMUNICATION_FORMAT_JSON = 'json'
     COMMUNICATION_FORMAT_POST = 'post'
-    SIGNATURE_ALGO = 'SHA256'
+    SIGNATURE_ALGO = "SHA256" # OPENSSL_ALGO_SHA256
     STATUS_SUCCESS = 0
     STATUS_MISSING_REQ_PARAMS = 1
     STATUS_SIGNATURE_FAILED = 2
@@ -31,7 +32,8 @@ class Defines:
     STATUS_DUPLICATE_TRANSMISSION = 20
     STATUS_TRANSACTION_DECLINED = 21
     STATUS_UNDEFINED_ERROR = 99
-    # ENCRYPT_PADDING = OPENSSL_PKCS1_PADDING
+    ENCRYPT_PADDING = "PKCS1_v1_5" # OPENSSL_PKCS1_PADDING 
     SDK_VERSION = '1.2.0'
 
-    # function __construct() { }
+    def __init__(_self):
+        pass

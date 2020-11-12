@@ -4,46 +4,44 @@ from IPC.Helper import Helper
 from IPC.IPC_Exception import IPC_Exception
 
 
-"""
+class GetTxnStatus(Base):
+    """
  * Process IPC method: IPCGetTxnStatus.
  * Collect, validate and send API params
-"""
-class GetTxnStatus(Base):
+    """
     __orderID: str
 
     def __init__(self, cnf: Config):
         self._setCnf(cnf)
 
-    """
-    * Initiate API request
-    *
-    * @return Response
-    """
     def process(self):
+        """
+    * Initiate API request\n
+    * @return Response
+        """
         self.validate()
 
         self._addPostParam('IPCmethod', 'IPCGetTxnStatus')
-        self._addPostParam('IPCVersion', self.getCnf().getVersion())
-        self._addPostParam('IPCLanguage', self.getCnf().getLang())
-        self._addPostParam('SID', self.getCnf().getSid())
-        self._addPostParam('WalletNumber', self.getCnf().getWallet())
-        self._addPostParam('KeyIndex', self.getCnf().getKeyIndex())
-        self._addPostParam('Source', self.getCnf().getSource())
+        self._addPostParam('IPCVersion', self._getCnf().getVersion())
+        self._addPostParam('IPCLanguage', self._getCnf().getLang())
+        self._addPostParam('SID', self._getCnf().getSid())
+        self._addPostParam('WalletNumber', self._getCnf().getWallet())
+        self._addPostParam('KeyIndex', self._getCnf().getKeyIndex())
+        self._addPostParam('Source', self._getCnf().getSource())
 
         self._addPostParam('OrderID', self.getOrderID())
         self._addPostParam('OutputFormat', self.getOutputFormat())
 
         return self._processPost()
 
-    """
-    * Validate all set details
-    *
+    def validate(self):
+        """
+    * Validate all set details\n
     * @return boolean
     * @raises IPC_Exception
-    """
-    def validate(self):
+        """
         try:
-            self.getCnf().validate()
+            self._getCnf().validate()
         except Exception as ex:
             raise IPC_Exception(f'Invalid Config details: {ex}')
 
@@ -55,22 +53,19 @@ class GetTxnStatus(Base):
 
         return True
 
-    """
-    * Original request order id
-    *
-    * @return string
-    """
     def getOrderID(self):
+        """
+    * Original request order id\n
+    * @return string
+        """
         return self.__orderID
 
-    """
-    * Original request order id
-    *
-    * @param string orderID
-    *
-    * @return GetTxnStatus
-    """
     def setOrderID(self, orderID: str):
+        """
+    * Original request order id\n
+    * @param string orderID\n
+    * @return GetTxnStatus
+        """
         self.__orderID = orderID
 
         return self
