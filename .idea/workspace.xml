@@ -20,15 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83ccdfe5-9cdc-4bde-a371-2448d30dc9f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Base.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Config.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Crypto.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Crypto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Customer.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Customer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/other/mypos_purchase.py" beforeDir="false" afterPath="$PROJECT_DIR$/other/mypos_purchase.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
