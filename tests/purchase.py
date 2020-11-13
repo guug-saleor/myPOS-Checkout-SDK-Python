@@ -1,5 +1,6 @@
 import sys, os
-sys.path.insert(1, os.getcwd().replace('tests', ''))
+pt = os.getcwd().replace('tests', '')
+sys.path.insert(1, pt)
 
 import uuid
 
@@ -11,6 +12,8 @@ from IPC.Cart import Cart
 conf = Config()
 
 conf.setIpcURL('https://www.mypos.eu/vmp/checkout-test')
+
+# String
 conf.setPrivateKey('''\
 -----BEGIN RSA PRIVATE KEY-----
 MIICXAIBAAKBgQCf0TdcTuphb7X+Zwekt1XKEWZDczSGecfo6vQfqvraf5VPzcnJ
@@ -28,6 +31,9 @@ QjIajyv/oeDWhFQ9wQECQCydhJ6NaNQOCZh+6QTrH3TC5MeBA1Yeipoe7+BhsLNr
 cFG8s9sTxRnltcZl1dXaBSemvpNvBizn0Kzi8G3ZAgc=
 -----END RSA PRIVATE KEY-----\
 ''')
+
+# File
+conf.setPrivateKeyPath( pt+'/keys/test.store_private_key.pem' )
 
 conf.setLang('EN')
 conf.setSid('000000000000010')
