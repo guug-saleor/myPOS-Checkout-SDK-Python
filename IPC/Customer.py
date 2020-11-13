@@ -1,6 +1,6 @@
 from IPC.Helper import Helper
 from IPC.IPC_Exception import IPC_Exception
-from IPC.Purchase import Purchase
+import IPC.Purchase as Purchase
 
 
 class Customer(object):
@@ -109,7 +109,7 @@ class Customer(object):
     * @return bool
     * @raises IPC_Exception
         """
-        if paymentParametersRequired == Purchase.PURCHASE_TYPE_FULL:
+        if paymentParametersRequired == Purchase.Purchase.PURCHASE_TYPE_FULL:
 
             if self.getFirstName() == None:
                 raise IPC_Exception('Invalid First name')

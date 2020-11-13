@@ -1,8 +1,8 @@
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
-from Crypto.Signature import PKCS1_v1_5
-from Crypto.Hash import SHA512, SHA384, SHA256, SHA, MD5
-from Crypto import Random
+from Cryptodome.PublicKey import RSA
+from Cryptodome.Cipher import PKCS1_OAEP
+from Cryptodome.Signature import PKCS1_v1_5
+from Cryptodome.Hash import SHA512, SHA384, SHA256, SHA, MD5
+from Cryptodome import Random
 from base64 import b64encode, b64decode
 
 def newkeys(keysize):
@@ -22,10 +22,12 @@ def encrypt(message, pub_key):
     return cipher.encrypt(message)
 
 def decrypt(ciphertext, priv_key):
+    priv_key = importKey(priv_key)
     cipher = PKCS1_OAEP.new(priv_key)
     return cipher.decrypt(ciphertext)
 
 def sign(message, priv_key, hash="SHA256"):
+    priv_key = importKey(priv_key)
     signer = PKCS1_v1_5.new(priv_key)
 
     if (hash == "SHA512"):

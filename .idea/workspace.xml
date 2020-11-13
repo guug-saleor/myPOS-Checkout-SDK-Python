@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="83ccdfe5-9cdc-4bde-a371-2448d30dc9f8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IPC/Authorization.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Authorization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IPC/Base.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IPC/Config.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IPC/Crypto.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Crypto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IPC/Customer.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Customer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IPC/Helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/IPC/Helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/other/mypos_purchase.py" beforeDir="false" afterPath="$PROJECT_DIR$/other/mypos_purchase.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +38,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Unit Test" />
         <option value="Python Script" />
       </list>
     </option>
@@ -29,6 +55,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SvnConfiguration">
@@ -44,11 +71,23 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604616275865">
+    <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605196215969">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1604616275865" />
+    <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1605196215969" />
     <state x="220" y="117" key="FileChooserDialogImpl" timestamp="1604658587957">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

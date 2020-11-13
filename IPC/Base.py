@@ -112,8 +112,8 @@ class Base(metaclass=abc.ABCMeta):
 
         c = '<body onload="document.ipcForm.submit()">'
         c += '<form id="ipcForm" name="ipcForm" action="' + self._getCnf().getIpcURL() + '" method="post">'
-        for k, v in self.__params:
-            c += "<input type=\"hidden\" name=\"" + k + "\" value=\"" + v + "\"  />\n"
+        for k, v in self.__params.items():
+            c += f'<input type="hidden" name="{k}" value="{v}" />\n'
         c += '</form></body>'
         print (c)
         exit
@@ -124,8 +124,8 @@ class Base(metaclass=abc.ABCMeta):
     * 
     *  @return string base64 encoded signature
         """
-        __params = self.__params
-        for k, v in __params:
+        __params = dict()
+        for k, v in self.__params.items():
             __params[k] = Helper.unescape(v)
         concData = b64encode('-'.join(str(x) for x in __params.values()).encode('utf-8'))
         privKey = self._getCnf().getPrivateKey()

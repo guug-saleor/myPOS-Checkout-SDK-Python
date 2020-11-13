@@ -1,9 +1,7 @@
 from IPC.Defines import Defines
-from django.core.validators import URLValidator, validate_email, validate_ipv46_address
-from django.core.exceptions import ValidationError
-from html import escape as html_escape, unescape as html_unescape
+import validators
 import re
-from html.entities import entitydefs
+import html
 
 
 class Helper(object):
@@ -25,12 +23,7 @@ class Helper(object):
         # if len(email) > 7:
         #  return bool(re.match(
         #      "^.+@(\[?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email))
-        try:
-            validate_email(email)
-        except ValidationError:
-            return False
-        else:
-            return True
+        return bool(validators.email(email))
 
 
     @staticmethod
@@ -42,13 +35,7 @@ class Helper(object):
     * 
     *  @return boolean
         """
-        try:
-            validator = URLValidator()
-            _value = validator(url)
-        except ValidationError:
-            return False
-        else:
-            return True
+        return bool(validators.url(url))
 
 
     @staticmethod
@@ -60,12 +47,7 @@ class Helper(object):
     * 
     *  @return boolean
         """
-        try:
-            validate_ipv46_address(ip)
-        except ValidationError:
-            return False
-        else:
-            return True
+        return bool(validators.ipv4(ip))
 
 
     @staticmethod
@@ -77,7 +59,7 @@ class Helper(object):
     * 
     *  @return boolean
         """
-        return bool(re.match("/^[a-zA-Z ]*/", name))
+        return bool(re.match("^[a-zA-Z ]*", name))
 
 
     @staticmethod
@@ -89,7 +71,7 @@ class Helper(object):
     * 
     *  @return boolean
         """
-        return bool(re.match('/^(-)?[0-9]+(?:\.[0-9]{0,2})?/', amt))
+        return bool(re.match(r'^(-)?[0-9]+(?:\.[0-9]{0,2})?', str(amt)))
 
 
     @staticmethod
@@ -201,7 +183,7 @@ class Helper(object):
     *  @return string type
         """
         #('\'', '&#039;').replace('"', '&quot;') # ENT_QUOTES
-        return html_escape(text) 
+        return html.escape(text)
 
 
     @staticmethod
@@ -213,7 +195,7 @@ class Helper(object):
     * 
     *  @return string
         """
-        return html_unescape(text)
+        return html.unescape(text)
 
 
     @staticmethod

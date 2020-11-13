@@ -1,6 +1,8 @@
 
 import base64
 import json
+
+from IPC import Crypto
 from IPC.Helper import Helper
 from IPC.IPC_Exception import IPC_Exception
 from IPC.Defines import Defines
@@ -189,8 +191,10 @@ class Config(object):
         if self.getVersion() == None:
             raise IPC_Exception('Invalid IPC Version')
 
-        if not openssl_get_privatekey(self.getPrivateKey()):
-            raise IPC_Exception('Invalid Private key')
+        try:
+            Crypto.importKey(self.getPrivateKey())
+        except:
+            raise IPC_Exception(f'Invalid Private key')
 
         return True
 
