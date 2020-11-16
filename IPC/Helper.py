@@ -14,10 +14,8 @@ class Helper(object):
     @staticmethod
     def isValidEmail(email: str):
         """
-    *  Validate email address
-    * 
-    *  @param string email
-    * 
+    *  Validate email address\n
+    *  @param string email\n
     *  @return boolean
         """
         # if len(email) > 7:
@@ -29,10 +27,8 @@ class Helper(object):
     @staticmethod
     def isValidURL(url: str):
         """
-    *  Validate URL address
-    * 
-    *  @param string url
-    * 
+    *  Validate URL address\n
+    *  @param string url\n
     *  @return boolean
         """
         return bool(validators.url(url))
@@ -41,10 +37,8 @@ class Helper(object):
     @staticmethod
     def isValidIP(ip: str):
         """
-    *  Validate IP address
-    * 
-    *  @param string ip
-    * 
+    *  Validate IP address\n
+    *  @param string ip\n
     *  @return boolean
         """
         return bool(validators.ipv4(ip))
@@ -53,10 +47,8 @@ class Helper(object):
     @staticmethod
     def isValidName(name: str):
         """
-    *  Validate customer names
-    * 
-    *  @param string name
-    * 
+    *  Validate customer names\n
+    *  @param string name\n
     *  @return boolean
         """
         return bool(re.match("^[a-zA-Z ]*", name))
@@ -65,10 +57,8 @@ class Helper(object):
     @staticmethod
     def isValidAmount(amt):
         """
-    *  Validate amount.
-    * 
-    *  @param float amt
-    * 
+    *  Validate amount.\n
+    *  @param float amt\n
     *  @return boolean
         """
         return bool(re.match(r'^(-)?[0-9]+(?:\.[0-9]{0,2})?', str(amt)))
@@ -77,10 +67,8 @@ class Helper(object):
     @staticmethod
     def isValidCartQuantity(quantity):
         """
-    *  Validate quantity
-    * 
-    *  @param int quantity
-    * 
+    *  Validate quantity\n
+    *  @param int quantity\n
     *  @return boolean
         """
         return isinstance(quantity, int) and quantity > 0
@@ -89,10 +77,8 @@ class Helper(object):
     @staticmethod
     def isValidTrnRef(trnref):
         """
-    *  Validate transaction reference
-    * 
-    *  @param string trnref
-    * 
+    *  Validate transaction reference\n
+    *  @param string trnref\n
     *  @return boolean
         """
         #TODO
@@ -102,10 +88,8 @@ class Helper(object):
     @staticmethod
     def isValidOrderId(trnref):
         """
-    *  Validate Order ID
-    * 
-    *  @param string trnref
-    * 
+    *  Validate Order ID\n
+    *  @param string trnref\n
     *  @return boolean
         """
         #TODO
@@ -115,10 +99,8 @@ class Helper(object):
     @staticmethod
     def isValidOutputFormat(outputFormat):
         """
-    *  Validate output format
-    * 
-    *  @param string outputFormat
-    * 
+    *  Validate output format\n
+    *  @param string outputFormat\n
     *  @return boolean
         """
         return (outputFormat in [
@@ -130,10 +112,8 @@ class Helper(object):
     @staticmethod
     def isValidCardNumber(cardNo: str):
         """
-    *  Validate card number
-    * 
-    *  @param cardNo
-    * 
+    *  Validate card number\n
+    *  @param cardNo\n
     *  @return boolean
         """
         cardNo = cardNo.strip().replace(" ", "")
@@ -160,10 +140,8 @@ class Helper(object):
     @staticmethod
     def isValidCVC(cvc):
         """
-    *  Validate card CVC
-    * 
-    *  @param cvc
-    * 
+    *  Validate card CVC\n
+    *  @param cvc\n
     *  @return boolean
         """
         return (cvc.isnumeric() and len(cvc) == 3)
@@ -176,10 +154,8 @@ class Helper(object):
     @staticmethod
     def escape(text: str):
         """
-    *  Escape HTML special chars
-    * 
-    *  @param string text
-    * 
+    *  Escape HTML special chars\n
+    *  @param string text\n
     *  @return string type
         """
         #('\'', '&#039;').replace('"', '&quot;') # ENT_QUOTES
@@ -189,10 +165,8 @@ class Helper(object):
     @staticmethod
     def unescape(text):
         """
-    *  Unescape HTML special chars
-    * 
-    *  @param string text
-    * 
+    *  Unescape HTML special chars\n
+    *  @param string text\n
     *  @return string
         """
         return html.unescape(text)
@@ -203,13 +177,11 @@ class Helper(object):
         """
     *  Return associative array element by key.
     *  If key not found in array returns default
-    *  If notEmpty argument is TRUE returns default even if key is found in array but the element has empty value(0, None, '')
-    * 
+    *  If notEmpty argument is TRUE returns default even if key is found in array but the element has empty value(0, None, '')\n
     *  @param array array
     *  @param mixed key
     *  @param string default
-    *  @param bool notEmpty
-    * 
+    *  @param bool notEmpty\n
     *  @return mixed
         """
         # TODO: select one of (list, dict)
@@ -230,11 +202,9 @@ class Helper(object):
     def getValuesFromMultiDimensionalArray(array, values = []):
         """
     *  Returns one-dimensional array with all values from multi-dimensional array
-    *  Useful when create request signature where only array values matter
-    * 
+    *  Useful when create request signature where only array values matter\n
     *  @param array array
-    *  @param array values
-    * 
+    *  @param array values\n
     *  @return array
         """
         # TODO: select one of (list, dict)

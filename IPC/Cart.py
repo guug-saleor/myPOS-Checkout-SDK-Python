@@ -17,11 +17,11 @@ class Cart(object):
     __cart = []
 
     def add(self, itemName, quantity, price, type = ITEM_TYPE_ARTICLE):
-        """\n
+        """
     * @param string itemName Item name
     * @param int quantity Items quantity
-    * @param float price Single item price\n
-    * @param string type
+    * @param float price Single item price
+    * @param string type\n
     * @return Cart
     * @raises IPC_Exception
         """

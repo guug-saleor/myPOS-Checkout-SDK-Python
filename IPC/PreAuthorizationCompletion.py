@@ -32,7 +32,7 @@ class PreAuthorizationCompletion(Base):
 
     def setCurrency(self, currency: str):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @param string currency\n
     * @return PreAuthorizationCompletion
         """
@@ -42,8 +42,7 @@ class PreAuthorizationCompletion(Base):
 
     def setAmount(self, amount: float):
         """
-    *  The amount for completion
-    * 
+    *  The amount for completion\n
     * @param mixed amount\n
     * @return PreAuthorizationCompletion
         """
@@ -71,7 +70,7 @@ class PreAuthorizationCompletion(Base):
 
         self._addPostParam('Amount', self.getAmount())
         self._addPostParam('Currency', self.getCurrency())
-        
+
         self._addPostParam('OutputFormat', self.getOutputFormat())
 
         return self._processPost()
@@ -91,16 +90,16 @@ class PreAuthorizationCompletion(Base):
             raise IPC_Exception('IPCVersion ' + self._getCnf().getVersion() + ' does not support IPCPreAuthorizationCompletion method. Please use 1.4 or above.')
 
         if self.getCurrency() == None:
-            raise IPC_Exception('Invalid __currency')
+            raise IPC_Exception('Invalid currency')
 
         if self.getAmount() == None or not Helper.isValidAmount(self.getAmount()):
             raise IPC_Exception('Empty or invalid amount')
-        
+
         return True
 
     def getCurrency(self):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @return string
         """
         return self.__currency
@@ -111,11 +110,11 @@ class PreAuthorizationCompletion(Base):
     * @return string
         """
         return self.__orderID
-    
+
     def getAmount(self):
         """
     *  The amount for completion\n
     * @return mixed
         """
         return self.__amount
-    
+

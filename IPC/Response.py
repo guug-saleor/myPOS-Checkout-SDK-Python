@@ -13,7 +13,7 @@ from IPC.IPC_Exception import IPC_Exception
 
 class Response(object):
     """
- * IPC Response class. Parse and validate income __data
+ * IPC Response class. Parse and validate income data
     """
     __cnf: Config
     __raw_data = None
@@ -22,7 +22,7 @@ class Response(object):
     __signature: str
 
     def __init__(self, cnf: Config, raw_data, format):
-        """\n
+        """
     * @param cnf: Config
     * @param string|array raw_data
     * @param string format COMMUNICATION_FORMAT_JSON|COMMUNICATION_FORMAT_XML|COMMUNICATION_FORMAT_POST\n
@@ -82,7 +82,7 @@ class Response(object):
     * @raises IPC_Exception
         """
         if not bool(self.__signature):
-            raise IPC_Exception('Missing request __signature!')
+            raise IPC_Exception('Missing request signature!')
 
         if not self.__cnf:
             raise IPC_Exception('Missing config object!')
@@ -92,7 +92,7 @@ class Response(object):
             raise IPC_Exception('Signature check failed!')
 
     def __getSignData(self):
-        return base64.b64encode('-'.join(list(Helper.getValuesFromMultiDimensionalArray(self.__data))))
+        return base64.b64encode('-'.join(list(Helper.getValuesFromMultiDimensionalArray(self.__data))).encode('utf-8'))
 
 
     @staticmethod

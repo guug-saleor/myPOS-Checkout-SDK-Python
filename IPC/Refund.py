@@ -75,8 +75,8 @@ class Refund(Base):
         response = self._processPost().getData(str.lower)
         if (
             not response.get('ipc_trnref')
-            or (not response['amount'] or response['amount'] != self.getAmount()) 
-            or (not response['currency'] or response['currency'] != self.getCurrency()) 
+            or (not response['amount'] or response['amount'] != self.getAmount())
+            or (not response['currency'] or response['currency'] != self.getCurrency())
             or response['status'] != Defines.STATUS_SUCCESS
         ):
             return False
@@ -120,14 +120,14 @@ class Refund(Base):
 
     def getCurrency(self):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @return string
         """
         return self.__currency
 
     def setCurrency(self, currency: str):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @param string currency\n
     * @return Refund
         """

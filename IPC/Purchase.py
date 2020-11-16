@@ -187,7 +187,7 @@ class Purchase(Base):
             raise IPC_Exception('Invalid value provided for PaymentParametersRequired params')
 
         if self.getCurrency() == None:
-            raise IPC_Exception('Invalid __currency')
+            raise IPC_Exception('Invalid currency')
 
         try:
             self._getCnf().validate()
@@ -260,14 +260,14 @@ class Purchase(Base):
 
     def getCurrency(self):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @return string
         """
         return self.__currency
 
     def setCurrency(self, currency: str):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @param string currency\n
     * @return Purchase
         """

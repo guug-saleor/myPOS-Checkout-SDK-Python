@@ -66,9 +66,9 @@ class Card(object):
 
     def setCvc(self, cvc ):
         """
-    * @param string cvc 
+    * @param string cvc
         """
-        self.__cvc  = cvc 
+        self.__cvc  = cvc
 
     def getEci(self):
         """
@@ -150,7 +150,7 @@ class Card(object):
         """
     * @return string
         """
-        return self.__cvc 
+        return self.__cvc
 
     def getExpMM(self):
         """

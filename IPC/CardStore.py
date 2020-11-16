@@ -45,7 +45,7 @@ class CardStore(Base, metaclass=abc.ABCMeta):
             raise IPC_Exception('Invalid card verification')
 
         if (self.getCardVerification()) == None:
-            raise IPC_Exception('Invalid __currency')
+            raise IPC_Exception('Invalid currency')
 
         return True
 
@@ -58,7 +58,7 @@ class CardStore(Base, metaclass=abc.ABCMeta):
 
     def getCurrency(self):
         """
-    * ISO-4217 Three letter __currency code
+    * ISO-4217 Three letter currency code
     * Used in the request if CardVerification = CARD_VERIFICATION_YES.\n
     * @return string
         """
@@ -66,7 +66,7 @@ class CardStore(Base, metaclass=abc.ABCMeta):
 
     def setCurrency(self, currency: str):
         """
-    * ISO-4217 Three letter __currency code
+    * ISO-4217 Three letter currency code
     * Used in the request if CardVerification = CARD_VERIFICATION_YES.\n
     * @param string currency\n
     * @return CardStore

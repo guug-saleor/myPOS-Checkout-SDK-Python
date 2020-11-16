@@ -33,12 +33,10 @@ class Base(metaclass=abc.ABCMeta):
     @staticmethod
     def isValidSignature(data: str, signature: str, pubKey: str):
         """
-    *  Verify signature of API Request __params against the API public key
-    * 
+    *  Verify signature of API Request params against the API public key\n
     *  @param string data Signed data
     *  @param string signature Signature in base64 format
-    *  @param string pubKey API public key
-    * 
+    *  @param string pubKey API public key\n
     *  @return boolean
         """
         res = Crypto.verify(data, b64decode(signature), pubKey, Defines.SIGNATURE_ALGO)
@@ -49,24 +47,21 @@ class Base(metaclass=abc.ABCMeta):
 
     def getOutputFormat(self):
         """
-    *  Return current set output format for API Requests
-    * 
+    *  Return current set output format for API Requests\n
     *  @return string
         """
         return self._outputFormat
 
     def setOutputFormat(self, outputFormat: str):
         """
-    *  Set current set output format for API Requests
-    * 
+    *  Set current set output format for API Requests\n
     *  @param string outputFormat
         """
         self._outputFormat = outputFormat
 
     def _addPostParam(self, paramName: str, paramValue, encrypt = False):
         """
-    *  Add API request param
-    * 
+    *  Add API request param\n
     *  @param string paramName
     *  @param string paramValue
     *  @param bool encrypt
@@ -77,10 +72,8 @@ class Base(metaclass=abc.ABCMeta):
 
     def __encryptData(self, data: str):
         """
-    *  Create signature of API Request __params against the SID private key
-    * 
-    *  @param string data
-    * 
+    *  Create signature of API Request params against the SID private key\n
+    *  @param string data\n
     *  @return string base64 encoded signature
         """
         crypted = Crypto.encrypt(data, self._getCnf().getEncryptPublicKey())
@@ -89,23 +82,21 @@ class Base(metaclass=abc.ABCMeta):
 
     def _getCnf(self):
         """
-    *  Return IPC.Config object with current IPC configuration
-    * 
+    *  Return IPC.Config object with current IPC configuration\n
     *  @return Config
         """
         return self.__cnf
 
     def _setCnf(self, cnf: Config):
         """
-    *  Set Config object with current IPC configuration
-    * 
+    *  Set Config object with current IPC configuration\n
     *  @param cnf: Config
         """
         self.__cnf = cnf
 
     def _processHtmlPost(self):
         """
-    *  Generate HTML form with POST __params and auto-submit it
+    *  Generate HTML form with POST params and auto-submit it
         """
         #Add request signature
         self.__params['Signature'] = self.__createSignature()
@@ -120,8 +111,7 @@ class Base(metaclass=abc.ABCMeta):
 
     def __createSignature(self):
         """
-    *  Create signature of API Request __params against the SID private key
-    * 
+    *  Create signature of API Request params against the SID private key\n
     *  @return string base64 encoded signature
         """
         __params = dict()
@@ -135,8 +125,7 @@ class Base(metaclass=abc.ABCMeta):
 
     def _processPost(self):
         """
-    *  Send POST Request to API and returns Response object with validated response data
-    * 
+    *  Send POST Request to API and returns Response object with validated response data\n
     *  @return Response
     *  @raises IPC_Exception
         """
@@ -200,10 +189,8 @@ class Base(metaclass=abc.ABCMeta):
 
     def __httpChunkedDecode(self, chunk: str):
         """
-    *  Alternative of php http-chunked-decode function
-    * 
-    *  @param string chunk
-    * 
+    *  Alternative of php http-chunked-decode function\n
+    *  @param string chunk\n
     *  @return mixed
         """
         pos = 0
@@ -227,10 +214,8 @@ class Base(metaclass=abc.ABCMeta):
 
     def __is_hex(_self, hex: str):
         """
-    *  determine if a string can represent a number in hexadecimal
-    * 
-    *  @param string hex
-    * 
+    *  determine if a string can represent a number in hexadecimal\n
+    *  @param string hex\n
     *  @return boolean True if the string is a hex, otherwise False
         """
         # regex is for weenies

@@ -68,7 +68,7 @@ def purchase():
         Amount_2=3.45
     )
     purchase_data['Signature'] = _generate_signature(purchase_data)
-    
+
     return _generate_html_form(purchase_data)
 
 def _private_key():

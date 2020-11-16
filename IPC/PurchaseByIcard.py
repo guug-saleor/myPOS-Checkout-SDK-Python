@@ -150,7 +150,7 @@ class PurchaseByIcard(Base):
             raise IPC_Exception('Invalid Success URL')
 
         if self.getCurrency() == None:
-            raise IPC_Exception('Invalid __currency')
+            raise IPC_Exception('Invalid currency')
 
         if self.getEmail() == None and self.getPhone()  == None :
             raise IPC_Exception('Must provide customer email either phone')
@@ -206,14 +206,14 @@ class PurchaseByIcard(Base):
 
     def getCurrency(self):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @return string
         """
         return self.__currency
 
     def setCurrency(self, currency: str):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @param string currency\n
     * @return PurchaseByIcard
         """

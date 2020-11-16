@@ -131,14 +131,14 @@ class RequestMoney(Base):
 
     def getCurrency(self):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @return string
         """
         return self.__currency
 
     def setCurrency(self, currency: str):
         """
-    * ISO-4217 Three letter __currency code\n
+    * ISO-4217 Three letter currency code\n
     * @param string currency\n
     * @return RequestMoney
         """

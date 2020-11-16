@@ -14,7 +14,7 @@ class Reversal(Base):
     def __init__(self, cnf: Config):
         """
      * Return Refund object
- 
+
      * @param cnf: Config
         """
         self._setCnf(cnf)
@@ -22,7 +22,7 @@ class Reversal(Base):
     def process(self):
         """
      * Initiate API request
- 
+
      * @return Response
      * @raises IPC_Exception
         """
@@ -43,7 +43,7 @@ class Reversal(Base):
     def validate(self):
         """
      * Validate all set refund details
- 
+
      * @return boolean
      * @raises IPC_Exception
         """
@@ -63,7 +63,7 @@ class Reversal(Base):
     def getTrnref(self):
         """
      * Transaction reference - transaction unique identifier
- 
+
      * @return string
         """
         return self.__trnref
@@ -71,9 +71,9 @@ class Reversal(Base):
     def setTrnref(self, trnref: str):
         """
      * Transaction reference - transaction unique identifier
- 
+
      * @param string trnref
- 
+
      * @return Reversal
         """
         self.__trnref = trnref
